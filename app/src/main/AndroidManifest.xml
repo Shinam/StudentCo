@@ -17,7 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".fetchCoDisciples" />
+        <activity android:name=".fetchCoDisciples"
+            android:theme="@android:style/Theme.DeviceDefault"/>
         <activity android:name=".Test"></activity>
     </application>
 

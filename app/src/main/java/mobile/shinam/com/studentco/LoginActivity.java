@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     public String wsUserId;
 
     private static final int REINIT_ID = Menu.FIRST;
+    private static final int QUIT_ID = Menu.FIRST+1;
     private static final String TAG = "LoginActivity";
 
 
@@ -86,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         menu.add(0, REINIT_ID, 0, "Reset");
+        menu.add(0, QUIT_ID, 0, "Quit");
         return true;
     }
 
@@ -94,6 +96,9 @@ public class LoginActivity extends AppCompatActivity {
         switch(item.getItemId()){
             case REINIT_ID:
                 Reinit();
+                break;
+            case QUIT_ID:
+                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);

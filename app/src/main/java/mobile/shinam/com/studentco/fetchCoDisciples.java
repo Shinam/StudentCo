@@ -5,6 +5,9 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,6 +30,7 @@ import mobile.com.shinam.entity.Login;
 
 public class fetchCoDisciples extends ListActivity {
     ArrayList<Login> coDisciples = new ArrayList<>();
+    private static final int QUIT_ID = Menu.FIRST;
 
     private static final String TAG = "fetchCoDisciples";
     @Override
@@ -131,5 +135,33 @@ public class fetchCoDisciples extends ListActivity {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        menu.add(0, QUIT_ID, 0, "Quitter");
+        return true;
+    }
+
+    /*Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(QUIT_ID, menu);
+        return super.onCreateOptionsMenu(menu);
+    }*/
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()){
+            case QUIT_ID:
+                traitementFinal();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void traitementFinal(){
+        finish();
     }
 }
