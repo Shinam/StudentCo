@@ -28,7 +28,8 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_columnSpan="3"/>
+            android:layout_columnSpan="3"
+            android:textSize="25sp"/>
 
         <TextView
             android:text="Username"

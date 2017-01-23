@@ -1,5 +1,6 @@
 package mobile.shinam.com.studentco;
 
+
 import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -54,7 +55,9 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else {
                     if(wsAuthenticate(usr, pss)){
-                        Toast.makeText(LoginActivity.this, "Loged in : "+wsUserId, Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, fetchCoDisciples.class).putExtra("id", wsUserId);
+                        startActivity(intent);
+                        //Toast.makeText(LoginActivity.this, "Id : "+wsUserId, Toast.LENGTH_SHORT).show();
                     }
                     else{
                         Toast.makeText(LoginActivity.this, "User : "+usr+" size : "+usr.length()+" pass = "+pss+" size : "+pss.length(), Toast.LENGTH_SHORT).show();
@@ -70,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
         Log.w(TAG, "wsAuthenticate : start-end" );
         String id = callPHPWebServiceForAuthenticate(username, password);
         if (id==null) {
-            this.wsUserId="0";
+            this.wsUserId=null;
             return false;
         }
         else {
@@ -114,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
         String method_name = "wsAuthenticate";//La méthode
         String target_namespace = "studentco.org";//voir wsdl : targetNameSpace ou tns
 
-        String wsResponse;
+        String wsResponse=null;
         SoapObject request = new SoapObject(target_namespace, method_name);
 //Params :
         PropertyInfo propInfo1 = new PropertyInfo();
@@ -139,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
             httpTransportSE.call(soap_action, envelope);
             Object response = envelope.getResponse();
             wsResponse = response.toString();
-            return wsResponse;
+                return wsResponse;
         }
         catch (IOException e) {
             e.printStackTrace();
